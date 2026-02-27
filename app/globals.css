@@ -3,6 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Safe area insets para iOS notch y Android */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
 }
 
 @theme inline {
@@ -19,8 +24,56 @@
   }
 }
 
+/* Prevenir comportamientos no deseados en móvil */
+html {
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  /* Prevenir selección de texto durante el juego */
+  -webkit-user-select: none;
+  user-select: none;
+  /* Prevenir highlight en tap para iOS/Android */
+  -webkit-tap-highlight-color: transparent;
+  /* Suavizar fuentes en móvil */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevenir pull-to-refresh en Chrome Android */
+body {
+  overscroll-behavior-y: contain;
+}
+
+/* Altura real del viewport en móvil (dvh = dynamic viewport height) */
+.h-screen {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Prevenir scroll en el contenedor del juego */
+#__next {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Prevenir zoom con doble tap en iOS Safari */
+* {
+  touch-action: manipulation;
+}
+
+/* Prevenir el menú contextual largo-press */
+canvas, img, div {
+  -webkit-touch-callout: none;
 }
