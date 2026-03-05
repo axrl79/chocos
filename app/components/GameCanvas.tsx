@@ -133,17 +133,17 @@ export default function GameCanvas() {
       {/* === SUELO (pasto) === */}
       {/* pasto-png.png ya está recortado — el pasto ocupa toda la imagen. */}
       <div
-        className="absolute left-0 right-0"
-        style={{
-          bottom: groundBottom,
-          height: groundHeight,
-          backgroundColor: '#7c4c1e',
-          backgroundImage: 'url(/pasto-png.png)',
-          backgroundRepeat: 'repeat-x',
-          backgroundSize: `auto 100%`,
-          backgroundPosition: 'left top',
-        }}
-      />
+  className="absolute left-0 right-0"
+  style={{
+    bottom: groundBottom,
+    height: groundHeight,
+    backgroundColor: '#7c4c1e',
+    backgroundImage: 'url(/pasto-png.png)',
+    backgroundRepeat: 'repeat-x',
+    backgroundSize: `auto 20%`,
+    backgroundPosition: 'left top',
+  }}
+/>
 
 
 
