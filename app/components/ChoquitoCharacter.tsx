@@ -10,7 +10,9 @@ interface ChoquitoCharacterProps {
 }
 
 export default function ChoquitoCharacter({ position, isJumping, scale = 1 }: ChoquitoCharacterProps) {
-  const s = Math.min(scale, 1.4);
+  // Aumentar la escala base en 20% (multiplicar por 1.2)
+  const increasedScale = scale * 1.2;
+  const s = Math.min(increasedScale, 1.4);
   const charWidth = Math.round(88 * s);
   const charHeight = Math.round(106 * s);
 
