@@ -69,10 +69,6 @@ export default function GameCanvas() {
   // Nubes - cantidad reducida en móvil
   const cloudCount = isMobile ? 3 : 6;
 
-  // Pasto reducido en móvil
-  const grassCount = isMobile ? 25 : 60;
-  const flowerCount = isMobile ? 6 : 12;
-
   // Tamaños de fuente / UI responsivos
   const hudFontSize = isMobile ? 'text-xl' : 'text-3xl';
   const hudPadding = isMobile ? 'px-4 py-2' : 'px-8 py-4';
@@ -163,35 +159,31 @@ export default function GameCanvas() {
         <Puma x={width * 0.8} y={pumaY1} delay={1.5} scale={elementScale} />
       </div>
 
-      {/* === SUELO === */}
+      {/* === SUELO (pasto) === */}
       <div
-        className="absolute left-0 right-0 bg-linear-to-b from-green-600 via-green-700 to-green-800 shadow-inner"
-        style={{ bottom: groundBottom, height: groundHeight }}
-      >
-        <div className="absolute top-0 left-0 right-0 h-3 bg-green-900 opacity-50" />
-        {/* Pasto */}
-        {[...Array(grassCount)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bottom-0 w-1 bg-green-900 rounded-t"
-            style={{ left: `${i * (100 / grassCount)}%`, height: `${8 + Math.random() * 12}px` }}
-            animate={{ scaleY: [1, 0.95, 1] }}
-            transition={{ duration: 2 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 2 }}
-          />
-        ))}
-        {/* Flores */}
-        {[...Array(flowerCount)].map((_, i) => (
-          <motion.div
-            key={`flower-${i}`}
-            className="absolute bottom-2"
-            style={{ left: `${5 + i * (90 / flowerCount)}%` }}
-            animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity, delay: i * 0.3 }}
-          >
-            <div className={`w-2 h-2 rounded-full ${i % 3 === 0 ? 'bg-pink-400' : i % 3 === 1 ? 'bg-yellow-400' : 'bg-red-400'}`} />
-          </motion.div>
-        ))}
-      </div>
+        className="absolute left-0 right-0"
+        style={{
+          bottom: groundBottom,
+          height: groundHeight,
+          backgroundImage: 'url(/pasto-png.png)',
+          backgroundRepeat: 'repeat-x',
+          backgroundSize: 'auto 100%',
+          backgroundPosition: 'top left',
+        }}
+      />
+
+      {/* === BOSQUE (arbustos sobre el suelo) === */}
+      <div
+        className="absolute left-0 right-0 z-10"
+        style={{
+          bottom: groundHeight - 6,
+          height: isMobile ? 55 : 95,
+          backgroundImage: 'url(/bosque-png.png)',
+          backgroundRepeat: 'repeat-x',
+          backgroundSize: 'auto 100%',
+          backgroundPosition: 'bottom left',
+        }}
+      />
 
       {/* === CUADRO MARIO BROS === */}
       <ProposalBox
