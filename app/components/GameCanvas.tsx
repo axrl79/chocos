@@ -131,12 +131,7 @@ export default function GameCanvas() {
       </div>
 
       {/* === SUELO (pasto) === */}
-      {/*
-        pasto-png.png tiene ~43% de espacio transparente ARRIBA del pasto visible.
-        Escalamos al 233% y desplazamos -groundHeight px para que el pasto quede
-        exactamente en el borde superior del contenedor (donde el personaje aterriza).
-        backgroundColor llena la tierra por debajo del pasto.
-      */}
+      {/* pasto-png.png ya está recortado — el pasto ocupa toda la imagen. */}
       <div
         className="absolute left-0 right-0"
         style={{
@@ -145,8 +140,8 @@ export default function GameCanvas() {
           backgroundColor: '#7c4c1e',
           backgroundImage: 'url(/pasto-png.png)',
           backgroundRepeat: 'repeat-x',
-          backgroundSize: 'auto 233%',
-          backgroundPosition: `left -${groundHeight}px`,
+          backgroundSize: `auto 100%`,
+          backgroundPosition: 'left top',
         }}
       />
 
@@ -162,18 +157,15 @@ export default function GameCanvas() {
       />
 
       {/* === BOSQUE (arbustos sobre el suelo) === */}
-      {/*
-        bosque-png.png tiene ~33% transparente arriba y ~43% abajo del contenido visible.
-        Escalamos al 152% y posicionamos para que la base del bosque quede en el suelo.
-      */}
+      {/* bosque-png.png ya está recortado — se superpone sobre el pasto. */}
       <div
         className="absolute left-0 right-0 z-10"
         style={{
           bottom: groundHeight - 4,
-          height: isMobile ? 55 : 95,
+          height: isMobile ? 60 : isTablet ? 90 : 110,
           backgroundImage: 'url(/bosque-png.png)',
           backgroundRepeat: 'repeat-x',
-          backgroundSize: 'auto 152%',
+          backgroundSize: `auto 100%`,
           backgroundPosition: 'left bottom',
         }}
       />
