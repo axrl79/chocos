@@ -98,17 +98,7 @@ export default function ProposalBox({
           />
         )}
 
-        {/* Bordes */}
-        <div className="absolute top-0 left-0 right-0 h-2 bg-purple-300 opacity-80 rounded-t-xl" />
-        <div className="absolute bottom-0 left-0 right-0 h-2 bg-purple-900 opacity-80 rounded-b-xl" />
-        <div className="absolute top-0 bottom-0 left-0 w-2 bg-purple-300 opacity-80 rounded-l-xl" />
-        <div className="absolute top-0 bottom-0 right-0 w-2 bg-purple-900 opacity-80 rounded-r-xl" />
 
-        {/* Esquinas */}
-        <div className="absolute top-3 left-3 w-3 h-3 bg-purple-200 opacity-60 rounded" />
-        <div className="absolute top-3 right-3 w-3 h-3 bg-purple-200 opacity-60 rounded" />
-        <div className="absolute bottom-3 left-3 w-3 h-3 bg-purple-800 opacity-60 rounded" />
-        <div className="absolute bottom-3 right-3 w-3 h-3 bg-purple-800 opacity-60 rounded" />
 
         {/* Puntos decorativos */}
         {!isHit && (

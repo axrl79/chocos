@@ -11,8 +11,8 @@ interface ChoquitoCharacterProps {
 
 export default function ChoquitoCharacter({ position, isJumping, scale = 1 }: ChoquitoCharacterProps) {
   const s = Math.min(scale, 1.4);
-  const charWidth = Math.round(80 * s);
-  const charHeight = Math.round(96 * s);
+  const charWidth = Math.round(88 * s);
+  const charHeight = Math.round(106 * s);
 
   return (
     <motion.div

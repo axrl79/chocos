@@ -145,16 +145,7 @@ export default function GameCanvas() {
         }}
       />
 
-      {/* === COLIDER DEL SUELO (línea visual de colisión) === */}
-      <div
-        className="absolute left-0 right-0 pointer-events-none z-25"
-        style={{
-          top: height - groundHeight,
-          height: 3,
-          background: 'rgba(0, 255, 80, 0.55)',
-          boxShadow: '0 0 8px 2px rgba(0, 255, 80, 0.5)',
-        }}
-      />
+
 
       {/* === BOSQUE (arbustos sobre el suelo) === */}
       {/* bosque-png.png ya está recortado — se superpone sobre el pasto. */}
@@ -190,44 +181,6 @@ export default function GameCanvas() {
         />
       )}
 
-      {/* === COLIDERS VISUALES (hitboxes) === */}
-      {game.gameStarted && (() => {
-        const s = Math.min(scale, 1.3);
-        const boxSize = 96 * s;
-        const charScale = isMobile ? Math.max(0.7, scale * 0.8) : Math.min(scale, 1.2);
-        const charW = 80 * charScale;
-        const charH = 96 * charScale;
-        return (
-          <>
-            {/* Colider del cuadro (donde el personaje puede golpear desde abajo) */}
-            <div
-              className="absolute pointer-events-none z-35"
-              style={{
-                left: game.boxPosition.x,
-                top: game.boxPosition.y,
-                width: boxSize,
-                height: boxSize,
-                border: '2px dashed rgba(255, 220, 0, 0.7)',
-                boxShadow: 'inset 0 0 8px rgba(255, 220, 0, 0.3)',
-                borderRadius: 4,
-              }}
-            />
-            {/* Colider del personaje */}
-            <div
-              className="absolute pointer-events-none z-35"
-              style={{
-                left: game.playerPosition.x,
-                top: game.playerPosition.y,
-                width: charW,
-                height: charH,
-                border: '2px dashed rgba(0, 200, 255, 0.7)',
-                boxShadow: 'inset 0 0 6px rgba(0, 200, 255, 0.25)',
-                borderRadius: 4,
-              }}
-            />
-          </>
-        );
-      })()}
 
       {/* === HUD === */}
       <div className="absolute top-3 left-3 z-50" style={{ paddingTop: screen.safeArea.top }}>
