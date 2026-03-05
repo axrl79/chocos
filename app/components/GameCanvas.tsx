@@ -3,11 +3,7 @@
 import { useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChoquitoCharacter from './ChoquitoCharacter';
-import Teleferico from './Teleferico';
-import Minibus from './Minibus';
-import Puma from './Puma';
 import ProposalBox from './ProposalBox';
-import PacenoBuilding from './PacenoBuilding';
 import useResponsive from '../hooks/useResponsive';
 import useTouchControls from '../hooks/useTouchControls';
 import useGameLoop from '../hooks/useGameLoop';
@@ -77,18 +73,7 @@ export default function GameCanvas() {
   const btnSize = isMobile ? 'py-3 px-8 text-lg' : 'py-5 px-12 text-2xl';
   const instructionSize = isMobile ? 'text-sm' : 'text-lg';
 
-  // Posiciones de elementos de fondo
-  const buildingX = isMobile ? width * 0.02 : width * 0.05;
-  const buildingScale = isMobile ? 0.4 : elementScale;
-
-  const telefericoY1 = height * 0.12;
-  const telefericoY2 = height * 0.15;
-  const telefericoScale = isMobile ? 0.4 : elementScale;
-
-  const minibusY = height * groundRatio + 30;
-  const pumaY1 = height * groundRatio + (isMobile ? 5 : 15);
-
-  const sunSize = isMobile ? 'w-16 h-16' : 'w-28 h-28';
+  const sunSize= isMobile ? 'w-16 h-16' : 'w-28 h-28';
   const sunPosition = isMobile ? 'top-8 right-8' : 'top-16 right-32';
 
   return (
@@ -142,21 +127,6 @@ export default function GameCanvas() {
           <div className="absolute top-1/4 right-1/6 w-24 h-16 bg-white opacity-80 blur-sm rounded-full" style={{ transform: `scale(${isMobile ? 0.5 : 1})` }} />
           <div className="absolute top-1/3 left-1/10 w-20 h-12 bg-white opacity-80 blur-sm rounded-full" style={{ transform: `scale(${isMobile ? 0.5 : 1})` }} />
         </div>
-
-        {/* Edificio paceño */}
-        <PacenoBuilding x={buildingX} scale={buildingScale} />
-
-        {/* Teleféricos */}
-        <Teleferico startX={-300} y={telefericoY1} delay={0} color="purple" scale={telefericoScale} screenWidth={width} />
-        <Teleferico startX={-900} y={telefericoY2} delay={10} color="red" scale={telefericoScale} screenWidth={width} />
-
-        {/* Minibuses */}
-        <Minibus startX={-200} y={minibusY} delay={0} direction="right" scale={elementScale} screenWidth={width} />
-        <Minibus startX={width + 100} y={minibusY} delay={5} direction="left" scale={elementScale} screenWidth={width} />
-
-        {/* Pumas */}
-        <Puma x={width * 0.6} y={pumaY1} delay={0.8} scale={elementScale} />
-        <Puma x={width * 0.8} y={pumaY1} delay={1.5} scale={elementScale} />
       </div>
 
       {/* === SUELO (pasto) === */}
