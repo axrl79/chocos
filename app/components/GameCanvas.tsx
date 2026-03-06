@@ -37,7 +37,6 @@ export default function GameCanvas() {
     screenHeight: height,
     totalProposals: PROPOSALS.length,
     scale,
-    scaleY: screen.scaleY,
   });
 
   const handleJump = useCallback(() => {
@@ -55,6 +54,11 @@ export default function GameCanvas() {
 
   // Posiciones dinámicas del suelo
   const groundHeight = height * (1 - groundRatio) + 20;
+
+  // Tamaño del Choco para alinear videos
+  const chocoScale = Math.min((isMobile ? Math.max(0.7, scale * 0.8) : Math.min(scale, 1.2)) * 1.75, 2.1);
+  const chocoHeight = Math.round(106 * chocoScale);
+  const chocoWidth = Math.round(88 * chocoScale);
 
 const titleSize = isMobile ? 'text-[15px]' : isTablet ? 'text-5xl' : 'text-7xl';
 const subtitleSize = isMobile ? 'text-[15px]' : 'text-3xl';
@@ -85,9 +89,9 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
           playsInline
           className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
           style={{
-            bottom: 16 + 76,
-            right: -41,
-            width: isMobile ? 150 : 250,
+            bottom: groundHeight - 300,
+            right: 0,
+            width: Math.round(chocoWidth * 1.8),
             height: 'auto',
           }}
         >
@@ -121,9 +125,9 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
           playsInline
           className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
           style={{
-            bottom: 16 + 57 - 45,
-            left: -41,
-            width: isMobile ? 150 : 250,
+            bottom: groundHeight - 246,
+            left: 0,
+            width: chocoWidth,
             height: 'auto',
           }}
         >

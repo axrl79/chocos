@@ -15,10 +15,8 @@ interface GameLoopConfig {
   screenHeight: number;
   /** Total de propuestas */
   totalProposals: number;
-  /** Factor de escala horizontal */
+  /** Factor de escala */
   scale: number;
-  /** Factor de escala vertical */
-  scaleY: number;
 }
 
 interface GameLoopState {
@@ -40,7 +38,7 @@ interface GameLoopActions {
 }
 
 export default function useGameLoop(config: GameLoopConfig): GameLoopState & GameLoopActions {
-  const { groundRatio, boxYRatio, boxXRatio, screenWidth, screenHeight, totalProposals, scale, scaleY } = config;
+  const { groundRatio, boxYRatio, boxXRatio, screenWidth, screenHeight, totalProposals, scale } = config;
 
   // Valores calculados dinámicamente
   const groundLevel = screenHeight * groundRatio;
@@ -49,10 +47,13 @@ export default function useGameLoop(config: GameLoopConfig): GameLoopState & Gam
     y: screenHeight * boxYRatio,
   }), [screenWidth, screenHeight, boxXRatio, boxYRatio]);
 
-  // Física escalada: usar scaleY para que el salto cubra la distancia vertical correcta
-  const physicsScale = Math.min(Math.max(scale, scaleY), 1.5);
-  const GRAVITY = 0.8 * physicsScale;
-  const JUMP_FORCE = -16 * physicsScale;
+  // Física escalada: calcular basándose en la distancia real entre suelo y cubo
+  // para que el salto funcione en cualquier tamaño/aspecto de pantalla
+  const jumpDistance = groundLevel - boxPosition.y;
+  // 160px es la distancia base de referencia (Mate 10 ~360x720)
+  const jumpScale = Math.max(jumpDistance / 160, 1);
+  const GRAVITY = 0.8 * jumpScale;
+  const JUMP_FORCE = -16.5 * jumpScale;
   const BOX_SIZE = 96 * Math.min(scale, 1.3);
   const PLAYER_WIDTH = 80 * Math.min(scale, 1.3);
 
@@ -151,7 +152,7 @@ export default function useGameLoop(config: GameLoopConfig): GameLoopState & Gam
       if (
         currentVelocity < 0 && // Subiendo
         playerTop <= boxBottom &&
-        playerTop >= boxBottom - 15 * Math.min(physicsScale, 1.5) &&
+        playerTop >= boxBottom - 15 * jumpScale &&
         playerCenterX >= boxLeft - 10 &&
         playerCenterX <= boxRight + 10 &&
         !boxHitRef.current
@@ -177,7 +178,7 @@ export default function useGameLoop(config: GameLoopConfig): GameLoopState & Gam
         cancelAnimationFrame(gameLoopRef.current);
       }
     };
-  }, [gameStarted, groundLevel, boxPosition, GRAVITY, JUMP_FORCE, BOX_SIZE, PLAYER_WIDTH, totalProposals, physicsScale]);
+  }, [gameStarted, groundLevel, boxPosition, GRAVITY, JUMP_FORCE, BOX_SIZE, PLAYER_WIDTH, totalProposals, jumpScale]);
 
   return {
     gameStarted,
