@@ -74,53 +74,62 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
       }}
     >
 
-      {/* === VIDEO VERDE1 ESQUINA DERECHA === */}
-      <video
-        src="/verde1.webm"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
-        style={{
-          bottom: 16 + 76,
-          right: -41,
-          width: isMobile ? 150 : 250,
-          height: 'auto',
-        }}
-      />
+      {/* === VIDEOS VERDE (WebM para Chrome/Firefox, MOV HEVC para Safari/iOS) === */}
+      <>
+        {/* === VIDEO VERDE1 ESQUINA DERECHA === */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
+          style={{
+            bottom: 16 + 76,
+            right: -41,
+            width: isMobile ? 150 : 250,
+            height: 'auto',
+          }}
+        >
+          <source src="/verde1_transparente.mov" type='video/mp4; codecs="hvc1"' />
+          <source src="/verde1.webm" type="video/webm" />
+        </video>
 
-      {/* === VIDEO VERDE3 ENCIMA DE VERDE1 === */}
-      <video
-        src="/verde3.webm"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
-        style={{
-          bottom: 16 + 76 + 250 + 76 - 113,
-          right: -41,
-          width: isMobile ? 150 : 250,
-          height: 'auto',
-        }}
-      />
+        {/* === VIDEO VERDE3 ENCIMA DE VERDE1 === */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
+          style={{
+            bottom: 16 + 76 + 250 + 76 - 113,
+            right: -41,
+            width: isMobile ? 150 : 250,
+            height: 'auto',
+          }}
+        >
+          <source src="/verde3_transparente.mov" type='video/mp4; codecs="hvc1"' />
+          <source src="/verde3.webm" type="video/webm" />
+        </video>
 
-      {/* === VIDEO VERDE2 ESQUINA IZQUIERDA === */}
-      <video
-        src="/verde2.webm"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
-        style={{
-          bottom: 16 + 57 - 45,
-          left: -41,
-          width: isMobile ? 150 : 250,
-          height: 'auto',
-        }}
-      />
+        {/* === VIDEO VERDE2 ESQUINA IZQUIERDA === */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
+          style={{
+            bottom: 16 + 57 - 45,
+            left: -41,
+            width: isMobile ? 150 : 250,
+            height: 'auto',
+          }}
+        >
+          <source src="/verde2_transparente.mov" type='video/mp4; codecs="hvc1"' />
+          <source src="/verde2.webm" type="video/webm" />
+        </video>
+      </>
 
       {/* === CUADRO MARIO BROS === */}
       <ProposalBox
