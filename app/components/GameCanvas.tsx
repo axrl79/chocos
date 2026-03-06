@@ -74,6 +74,54 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
       }}
     >
 
+      {/* === VIDEO VERDE1 ESQUINA DERECHA === */}
+      <video
+        src="/verde1.webm"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
+        style={{
+          bottom: 16 + 76,
+          right: -41,
+          width: isMobile ? 150 : 250,
+          height: 'auto',
+        }}
+      />
+
+      {/* === VIDEO VERDE3 ENCIMA DE VERDE1 === */}
+      <video
+        src="/verde3.webm"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
+        style={{
+          bottom: 16 + 76 + 250 + 76,
+          right: -41,
+          width: isMobile ? 150 : 250,
+          height: 'auto',
+        }}
+      />
+
+      {/* === VIDEO VERDE2 ESQUINA IZQUIERDA === */}
+      <video
+        src="/verde2.webm"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
+        style={{
+          bottom: 16 + 57,
+          left: -41,
+          width: isMobile ? 150 : 250,
+          height: 'auto',
+        }}
+      />
+
       {/* === CUADRO MARIO BROS === */}
       <ProposalBox
         x={game.boxPosition.x}
