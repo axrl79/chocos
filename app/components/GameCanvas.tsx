@@ -81,24 +81,6 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
 
       {/* === VIDEOS VERDE (WebM para Chrome/Firefox, MOV HEVC para Safari/iOS) === */}
       <>
-        {/* === VIDEO VERDE1 ESQUINA DERECHA === */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
-          style={{
-            bottom: groundHeight - 300,
-            right: 0,
-            width: Math.round(chocoWidth * 1.8),
-            height: 'auto',
-          }}
-        >
-          <source src="/verde1_transparente.mov" type='video/mp4; codecs="hvc1"' />
-          <source src="/verde1.webm" type="video/webm" />
-        </video>
-
         {/* === VIDEO VERDE3 ENCIMA DE VERDE1 === */}
         <video
           autoPlay
@@ -133,6 +115,24 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
         >
           <source src="/verde2_transparente.mov" type='video/mp4; codecs="hvc1"' />
           <source src="/verde2.webm" type="video/webm" />
+        </video>
+
+        {/* === VIDEO GATOS ESQUINA IZQUIERDA ARRIBA DE VERDE2 === */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
+          style={{
+            bottom: groundHeight - 246 + chocoWidth + 113,
+            left: 0,
+            width: chocoWidth,
+            height: 'auto',
+          }}
+        >
+          <source src="/gift%20gatos_transparente.mov" type='video/mp4; codecs="hvc1"' />
+          <source src="/gift%20gatos_transparente.webm" type="video/webm" />
         </video>
       </>
 
@@ -175,26 +175,27 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
         </motion.div>
       )}
 
-      {/* === BOTÓN DE SALTO MÓVIL === */}
+      {/* === VERDE1 ESQUINA INFERIOR IZQUIERDA === */}
       {game.gameStarted && isMobile && (
-        <motion.div
+        <div
           className="absolute z-50"
-          style={{ bottom: 20 + screen.safeArea.bottom, right: 20 }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.8, scale: 1 }}
+          style={{ bottom: -175, right: -76 }}
         >
-          <motion.button
-            className="w-16 h-16 rounded-full bg-purple-600 border-4 border-white shadow-2xl flex items-center justify-center text-white text-2xl font-black active:scale-90"
-            whileTap={{ scale: 0.85, backgroundColor: '#7c3aed' }}
-            onTouchStart={(e) => {
-              e.stopPropagation();
-              game.jump();
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="rounded-lg shadow-lg pointer-events-none"
+            style={{
+              width: Math.round(chocoWidth * 1.8),
+              height: 'auto',
             }}
-            style={{ touchAction: 'manipulation' }}
           >
-            ⬆
-          </motion.button>
-        </motion.div>
+            <source src="/verde1_transparente.mov" type='video/mp4; codecs="hvc1"' />
+            <source src="/verde1.webm" type="video/webm" />
+          </video>
+        </div>
       )}
 
       {/* === PANTALLA DE INICIO === */}
