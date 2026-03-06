@@ -79,6 +79,15 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
       }}
     >
 
+      {/* === LOGO CHOCO SOGLIANO ARRIBA CENTRADO === */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+        <img
+          src="/choco_sogliano_logo_sin_fondo_hd.png"
+          alt="Choco Sogliano Logo"
+          style={{ width: isMobile ? 120 : 200, height: 'auto' }}
+        />
+      </div>
+
       {/* === VIDEOS VERDE (WebM para Chrome/Firefox, MOV HEVC para Safari/iOS) === */}
       <>
         {/* === VIDEO VERDE3 ENCIMA DE VERDE1 === */}
