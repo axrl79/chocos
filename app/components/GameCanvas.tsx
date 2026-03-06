@@ -99,7 +99,7 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
         playsInline
         className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
         style={{
-          bottom: 16 + 76 + 250 + 76,
+          bottom: 16 + 76 + 250 + 76 - 113,
           right: -41,
           width: isMobile ? 150 : 250,
           height: 'auto',
@@ -115,7 +115,7 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
         playsInline
         className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
         style={{
-          bottom: 16 + 57,
+          bottom: 16 + 57 - 45,
           left: -41,
           width: isMobile ? 150 : 250,
           height: 'auto',
