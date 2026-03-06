@@ -55,8 +55,6 @@ export default function GameCanvas() {
   const groundHeight = height * (1 - groundRatio) + 20;
 
   // Tamaños de fuente / UI responsivos
-  const hudFontSize = isMobile ? 'text-xl' : 'text-3xl';
-  const hudPadding = isMobile ? 'px-4 py-2' : 'px-8 py-4';
   const titleSize = isMobile ? 'text-3xl' : isTablet ? 'text-5xl' : 'text-7xl';
   const subtitleSize = isMobile ? 'text-lg' : 'text-3xl';
   const btnSize = isMobile ? 'py-3 px-8 text-lg' : 'py-5 px-12 text-2xl';
@@ -96,29 +94,6 @@ export default function GameCanvas() {
         />
       )}
 
-
-      {/* === HUD === */}
-      <div className="absolute top-3 left-3 z-50" style={{ paddingTop: screen.safeArea.top }}>
-        <motion.div
-          className={`bg-linear-to-br from-purple-600 via-purple-700 to-purple-800 text-white ${hudPadding} rounded-2xl shadow-2xl border-2 md:border-4 border-purple-400`}
-          animate={{
-            scale: game.boxHit ? [1, 1.08, 1] : 1,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex items-center gap-2">
-            <div className={isMobile ? 'text-xl' : 'text-3xl'}>💡</div>
-            <div>
-              <div className="text-purple-200 text-[10px] md:text-xs font-semibold uppercase tracking-wider">
-                Propuestas
-              </div>
-              <div className={`${hudFontSize} font-black`}>
-                {game.hitCount}/{PROPOSALS.length}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
 
       {/* === INDICADOR DE SALTO === */}
       {game.gameStarted && (

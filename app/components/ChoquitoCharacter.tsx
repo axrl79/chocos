@@ -10,9 +10,9 @@ interface ChoquitoCharacterProps {
 }
 
 export default function ChoquitoCharacter({ position, isJumping, scale = 1 }: ChoquitoCharacterProps) {
-  // Aumentar la escala base en 20% (multiplicar por 1.2)
-  const increasedScale = scale * 1.2;
-  const s = Math.min(increasedScale, 1.4);
+  // Aumentar la escala base en 56% (1.2 * 1.3 ≈ 1.56)
+  const increasedScale = scale * 1.56;
+  const s = Math.min(increasedScale, 1.82);
   const charWidth = Math.round(88 * s);
   const charHeight = Math.round(106 * s);
 
@@ -21,7 +21,7 @@ export default function ChoquitoCharacter({ position, isJumping, scale = 1 }: Ch
       className="absolute z-20 flex flex-col items-center"
       style={{
         left: position.x,
-        top: position.y,
+        top: position.y + 10,
         transformOrigin: 'bottom center',
       }}
       animate={{
