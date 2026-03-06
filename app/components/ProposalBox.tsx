@@ -214,14 +214,14 @@ export default function ProposalBox({
 
               <div style={{ marginTop: 16 * s }}>
                 <h3
-                  className="text-purple-200 font-bold text-center mb-1 uppercase tracking-wide"
-                  style={{ fontSize: isMobile ? 10 : 12 }}
+                  className="text-purple-200 text-center mb-1 uppercase tracking-widest"
+                  style={{ fontSize: 10, fontFamily: "'Segoe UI', 'Helvetica Neue', Arial, sans-serif", fontWeight: 600, letterSpacing: '0.1em' }}
                 >
                   Propuesta #{currentProposal + 1}
                 </h3>
                 <p
-                  className="text-white font-bold text-center leading-snug"
-                  style={{ fontSize: isMobile ? 13 : 16 }}
+                  className="text-white text-center leading-relaxed"
+                  style={{ fontSize: 16, fontFamily: "'Segoe UI', 'Helvetica Neue', Arial, sans-serif", fontWeight: 500 }}
                 >
                   {proposalText}
                 </p>

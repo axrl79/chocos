@@ -25,8 +25,9 @@ export default function GameCanvas() {
 
   // Ratios responsivos para posiciones
   const groundRatio = isMobile ? 0.72 : 0.66;
-  const boxYRatio = isMobile ? 0.40 : 0.45;
-  const boxXRatio = isMobile ? 0.35 : 0.42;
+  const boxYRatio = isMobile ? 0.35 : 0.40;
+  const gameBoxSize = 96 * Math.min(scale, 1.3);
+  const boxXRatio = 0.5 - (gameBoxSize / 2) / width;
 
   const game = useGameLoop({
     groundRatio,
@@ -54,11 +55,10 @@ export default function GameCanvas() {
   // Posiciones dinámicas del suelo
   const groundHeight = height * (1 - groundRatio) + 20;
 
-  // Tamaños de fuente / UI responsivos
-  const titleSize = isMobile ? 'text-3xl' : isTablet ? 'text-5xl' : 'text-7xl';
-  const subtitleSize = isMobile ? 'text-lg' : 'text-3xl';
-  const btnSize = isMobile ? 'py-3 px-8 text-lg' : 'py-5 px-12 text-2xl';
-  const instructionSize = isMobile ? 'text-sm' : 'text-lg';
+const titleSize = isMobile ? 'text-[15px]' : isTablet ? 'text-5xl' : 'text-7xl';
+const subtitleSize = isMobile ? 'text-[15px]' : 'text-3xl';
+const btnSize = isMobile ? 'py-3 px-8 text-[15px]' : 'py-5 px-12 text-2xl';
+const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
 
   return (
     <div
