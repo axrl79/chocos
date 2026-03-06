@@ -37,6 +37,7 @@ export default function GameCanvas() {
     screenHeight: height,
     totalProposals: PROPOSALS.length,
     scale,
+    scaleY: screen.scaleY,
   });
 
   const handleJump = useCallback(() => {
