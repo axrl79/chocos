@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChoquitoCharacter from './ChoquitoCharacter';
 import ProposalBox from './ProposalBox';
@@ -51,20 +51,8 @@ export default function GameCanvas() {
     enabled: true,
   });
 
-  // Escalas responsivas para elementos del escenario
-  const elementScale = useMemo(() => {
-    if (isMobile) return Math.max(0.45, scale * 0.5);
-    if (isTablet) return Math.max(0.65, scale * 0.65);
-    return Math.min(scale, 1.2);
-  }, [isMobile, isTablet, scale]);
-
   // Posiciones dinámicas del suelo
   const groundHeight = height * (1 - groundRatio) + 20;
-  const groundBottom = 0;
-  const groundLevel = height * groundRatio;
-
-  // Nubes - cantidad reducida en móvil
-  const cloudCount = isMobile ? 3 : 6;
 
   // Tamaños de fuente / UI responsivos
   const hudFontSize = isMobile ? 'text-xl' : 'text-3xl';
@@ -74,92 +62,19 @@ export default function GameCanvas() {
   const btnSize = isMobile ? 'py-3 px-8 text-lg' : 'py-5 px-12 text-2xl';
   const instructionSize = isMobile ? 'text-sm' : 'text-lg';
 
-  const sunSize= isMobile ? 'w-16 h-16' : 'w-28 h-28';
-  const sunPosition = isMobile ? 'top-8 right-8' : 'top-16 right-32';
-
   return (
     <div
-      className="relative w-full h-screen overflow-hidden bg-linear-to-b from-sky-400 via-sky-500 to-sky-600 select-none"
-      style={{ touchAction: 'none', userSelect: 'none', WebkitUserSelect: 'none' }}
+      className="relative w-full h-screen overflow-hidden select-none"
+      style={{
+        touchAction: 'none',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        backgroundImage: 'url(/gemini-3-pro-image-preview-2k_b_necesito_esta_imagen.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center bottom',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
-      {/* === FONDO === */}
-      <div className="absolute inset-0">
-        {/* Sol */}
-        <motion.div
-          className={`absolute ${sunPosition}`}
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className={`relative ${sunSize}`}>
-            <div className="absolute inset-0 bg-yellow-300 rounded-full opacity-40 blur-3xl scale-150" />
-            <div className="absolute inset-0 bg-linear-to-br from-yellow-200 via-yellow-300 to-orange-400 rounded-full shadow-2xl" />
-            <div className="absolute top-4 left-4 w-1/3 h-1/3 bg-white opacity-60 rounded-full blur-lg" />
-          </div>
-        </motion.div>
-
-        {/* Nubes */}
-        {[...Array(cloudCount)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{ top: 40 + (i % 3) * (isMobile ? 40 : 70), left: -150 + i * (width / cloudCount) }}
-            animate={{ x: [0, width + 200] }}
-            transition={{ duration: 40 + i * 10, repeat: Infinity, ease: 'linear' }}
-          >
-            <div className="relative" style={{ transform: `scale(${isMobile ? 0.6 : 1})` }}>
-              <div className="w-32 h-16 bg-white opacity-90 rounded-full blur-sm" />
-              <div className="absolute top-4 left-8 w-24 h-14 bg-white opacity-90 rounded-full blur-sm" />
-              <div className="absolute top-6 left-16 w-28 h-12 bg-white opacity-90 rounded-full blur-sm" />
-            </div>
-          </motion.div>
-        ))}
-
-        {/* Montañas */}
-        <div className="absolute left-0 right-0" style={{ bottom: groundHeight - 10, height: height * 0.3 }}>
-          <div
-            className="absolute bottom-0 right-0 w-full h-full bg-linear-to-b from-gray-600 to-gray-700 opacity-60"
-            style={{ clipPath: 'polygon(0% 100%, 30% 40%, 60% 60%, 100% 20%, 100% 100%)' }}
-          />
-          <div
-            className="absolute bottom-0 left-0 h-4/5 bg-linear-to-b from-gray-600 to-gray-700 opacity-60"
-            style={{ width: '60%', clipPath: 'polygon(0% 50%, 40% 20%, 80% 70%, 100% 100%, 0% 100%)' }}
-          />
-          {/* Nieve */}
-          <div className="absolute top-1/4 right-1/6 w-24 h-16 bg-white opacity-80 blur-sm rounded-full" style={{ transform: `scale(${isMobile ? 0.5 : 1})` }} />
-          <div className="absolute top-1/3 left-1/10 w-20 h-12 bg-white opacity-80 blur-sm rounded-full" style={{ transform: `scale(${isMobile ? 0.5 : 1})` }} />
-        </div>
-      </div>
-
-      {/* === SUELO (pasto) === */}
-      {/* pasto-png.png ya está recortado — el pasto ocupa toda la imagen. */}
-      <div
-  className="absolute left-0 right-0"
-  style={{
-    bottom: groundBottom,
-    height: groundHeight,
-    backgroundColor: '#7c4c1e',
-    backgroundImage: 'url(/pasto-png.png)',
-    backgroundRepeat: 'repeat-x',
-    backgroundSize: `auto 20%`,
-    backgroundPosition: 'left top',
-  }}
-/>
-
-
-
-      {/* === BOSQUE (arbustos sobre el suelo) === */}
-      {/* bosque-png.png ya está recortado — se superpone sobre el pasto. */}
-      <div
-        className="absolute left-0 right-0 z-10"
-        style={{
-          bottom: groundHeight - 4,
-          height: isMobile ? 60 : isTablet ? 90 : 110,
-          backgroundImage: 'url(/bosque-png.png)',
-          backgroundRepeat: 'repeat-x',
-          backgroundSize: `auto 100%`,
-          backgroundPosition: 'left bottom',
-        }}
-      />
 
       {/* === CUADRO MARIO BROS === */}
       <ProposalBox
