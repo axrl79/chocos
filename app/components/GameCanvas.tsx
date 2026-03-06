@@ -89,8 +89,8 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
           playsInline
           className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
           style={{
-            bottom: 16 + 76 + 250 + 76 - 113,
-            right: -41,
+            bottom: 16 + 76 + 200 + 76 - 113,
+            right: -30,
             width: isMobile ? 150 : 250,
             height: 'auto',
           }}
@@ -125,7 +125,7 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
           playsInline
           className="absolute z-50 rounded-lg shadow-lg pointer-events-none"
           style={{
-            bottom: groundHeight - 246 + chocoWidth + 113,
+            bottom: groundHeight - 300 + chocoWidth + 253,
             left: 0,
             width: chocoWidth,
             height: 'auto',
@@ -179,7 +179,7 @@ const instructionSize = isMobile ? 'text-[15px]' : 'text-lg';
       {game.gameStarted && isMobile && (
         <div
           className="absolute z-50"
-          style={{ bottom: -175, right: -76 }}
+          style={{ bottom: -120, right: -66 }}
         >
           <video
             autoPlay
